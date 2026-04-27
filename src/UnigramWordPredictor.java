@@ -56,12 +56,18 @@ public class UnigramWordPredictor implements WordPredictor {
     // loop through the map -> look at word -> then word next to it? for 
     // i=0; i < length() of map, look at word and word next to it
     // make a array list to add to the list of new word new ArrayList<>()
-    // 
-    for (int i = 0; i < trainingWords.size(); i++) {
+    // stop when i at size - 1 so we can grab both words. i and i+1
 
+    for (int i = 0; i < trainingWords.size() - 1 ; i++) {
+      // grab i and i+1
         String current = trainingWords.get(i);
         String next = trainingWords.get(i + 1);
 
+        // if the list alr have the word, add tothe list
+        // if not, make a new list then add the word.
+        // I want A cat a kitty
+        // it should make a {cat, kitty}
+        //                cat {a }
         if (!neighborMap.containsKey(current)) {
             neighborMap.put(current, new ArrayList<>());
         }
